@@ -1,0 +1,8 @@
+class CreateContempts < ActiveRecord::Migration[6.0]
+  def change
+    create_table :contempts do |t|
+
+      t.timestamps
+    end
+  end
+end

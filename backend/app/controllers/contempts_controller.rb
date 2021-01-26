@@ -1,0 +1,2 @@
+class ContemptsController < ApplicationController
+end
