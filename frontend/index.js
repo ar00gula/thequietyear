@@ -1,4 +1,14 @@
-let toggleBar = document.getElementById("toggle-bar")
+class Drawing {
+  constructor(coordinates) {
+    this._coordinates = coordinates;
+  }
+
+  set coordinates(clear) {
+    this._coordinates = clear
+  }
+}
+  
+  let toggleBar = document.getElementById("toggle-bar")
 
 toggleBar.addEventListener("click", function() {
     let toggleChildren = document.getElementsByClassName("toggle-child")
@@ -18,7 +28,8 @@ toggleBar.addEventListener("click", function() {
 
 let map = document.getElementById('map')
 let ctx = map.getContext('2d');
-ctx.lineWidth = '.1';
+ctx.strokeStyle = 'rgba(100, 0, 0, 1)';
+
 
 // create a flag
 let isActive = false;
@@ -29,17 +40,25 @@ let plots = [];
 map.addEventListener('mousedown', startDraw, false);
 map.addEventListener('mousemove', draw, false);
 map.addEventListener('mouseup', endDraw, false);
-  
+
+map.addEventListener('click', function(e) {
+    console.log(`x ${e.clientX}`)
+    console.log(`y ${e.clientY}`)
+})
+
+
+function marker() {
+  ctx.lineWidth = 4
+}
 function draw(e) {
   if(!isActive) return;
-
-  // cross-browser canvas coordinates
 
   let x = e.clientX
   let y = e.clientY
 
   plots.push({x: x, y: y});
   drawOnCanvas(plots);
+
 }
 
 function drawOnCanvas(plots) {
@@ -58,6 +77,7 @@ function drawOnCanvas(plots) {
   }
   
   function endDraw(e) {
+    art = 
     isActive = false;
     plots = [];
   }

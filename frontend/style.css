@@ -24,14 +24,12 @@
    } */
 
  canvas {
-    height: 700px;
-    width: 75%;
     position: fixed;
  }
 
- div {
+ /* div {
      transition: width .2s, height .1s;
- }
+ } */
   
   body {
       height: 100%;
@@ -54,9 +52,11 @@
   }
 
   .column.left {
-    min-height: 700px;
+    bottom: 0;
+    min-height: 800px;
+    height: 100%;
     width: 25%;
-    position: relative;
+    position: fixed;
     float: left;
     background-color:#5e3b3b;
   }
@@ -65,13 +65,16 @@
     width: 5%;
     min-height: 200px;
     height: 300px;
+    bottom: auto;
   }
 
   .column.right {
-    min-height: 700px;
+    bottom: 0;
+    right: 0;
+    min-height: 800px;
+    height: 100%;
     width: 25%;
-    position: relative;
-    float: right;
+    position: fixed;
     background-color:green;
   }
   
