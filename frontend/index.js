@@ -1,26 +1,24 @@
 let toggleBar = document.getElementById("toggle-bar")
 
 toggleBar.addEventListener("click", function() {
-    let toggleChildren = document.getElementsByClassName("toggle-child")
+    let bigContent = document.getElementById("fullsize")
+    let smolContent = document.getElementById("collapsed")
     if (toggleBar.classList.contains("toolbar")) {
     toggleBar.classList.remove("toolbar");
-    Array.from(toggleChildren).forEach(function(child) {
-        child.classList.remove("hidden") 
-        });
+    bigContent.classList.remove("hidden");
+    smolContent.classList.add("hidden");
 
     } else {
         toggleBar.classList.add("toolbar");
-        Array.from(toggleChildren).forEach(function(child) {
-            child.classList.add("hidden") 
-            });
+        bigContent.classList.add("hidden");
+        smolContent.classList.remove("hidden");
     }
 })
 
 let rightSide = document.getElementById("right-side")
 
-
 rightSide.addEventListener("click", function() {
-  let rightChildren = document.getElementsByClassName("right-child")
+  let rightChildren = document.getElementsByClassName("fullsize rightbar")
   if (rightSide.classList.contains("sidebar")) {
   rightSide.classList.remove("sidebar");
   Array.from(rightChildren).forEach(function(child) {

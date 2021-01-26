@@ -19,10 +19,11 @@
     bottom : 0;
     height : 40px;
     width: 100%;
-    background-color: red;
+    background-color: #1e180d;
   }
   #footer p {
       margin: 10px;
+      color: #8b939c;
   }
 
   .column {
@@ -41,7 +42,7 @@
 
   .right {
     right: 0;
-    background-color:green;
+    background-color: #544343;
   }
   
   .toolbar {
@@ -57,7 +58,6 @@
     width: 60px;
   }
 
-  
   /* Clear floats after the columns */
   .row:after {
     content: "";
@@ -65,7 +65,7 @@
     clear: both;
   }
 
-  .toggle-child {
+  .fullsize {
       padding: 10px;
   }
 
