@@ -46,7 +46,7 @@ document.getElementById("pencil").addEventListener("click", e => {
   brushWeight(1);
   colorRecall()
 })
-  
+
 document.getElementById("marker").addEventListener("click", e => {
   brushWeight(8);
   colorRecall()
@@ -80,12 +80,30 @@ document.getElementById("colorDropdown").addEventListener("click", e => {
   }
 })
 
-let colors = Array.from(document.getElementsByClassName("color"))
+class Color {
+  constructor(name) {
+    this.name = name;
+  }
 
-colors.forEach(color => color.addEventListener("click", function() {
-brushColor(color.id)
-rememberedColor = color.id
-}))
+  set hexCode(hex) {
+    this.hexCode = hex
+  }
+
+  get hexCode() {
+    return this.hexCode
+  }
+
+  clickable() {
+    document.getElementById(this.name).addEventListener("click", function() {
+      brushColor(this.id)
+      rememberedColor = this.id
+    })
+  }
+  
+}
+
+let colors = Array.from(document.getElementsByClassName("color"))
+let colorObjects = colors.map(color => new Color(color.id)).forEach(color => color.clickable())
 
 //Map
 
