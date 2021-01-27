@@ -33,18 +33,29 @@
             <h4>A map game about community and struggle.</h4>
           </div>
           <div class="collapsed hidden">
-            <button id="pencil" class="dropbtn">Pencil</button>
-            <button id="marker">Marker</button>
-            <button id="eraser">Eraser</button>
-            <div id="colorDropdown">
-              <button id="color">Color</button>
-                <div id="colorList" class="dropdown-content hidden">
-                  <button class="color" id="red"></button>
-                  <button class="color" id="black"></button>
-                </div>
+            <button class="first-level" id="pencil" class="dropbtn"><p>Pencil</p></button>
+            <button class="first-level" id="marker"><p>Marker</p></button>
+            <div id="eraserDropdown">
+              <button class="first-level" id="eraser"><p>Eraser</p></button>
+              <div id="eraserList" class="dropdown-content hidden">
+                <button class="eraser" id="small"></button><br>
+                <button class="eraser" id="medium"></button><br>
+                <button class="eraser" id="large"></button>
+              </div>
             </div>
-            <button id="highlight">Highlight</button>
-          
+            <div id="colorDropdown">
+              <button class="first-level" id="color"><p>Color</p></button>
+                <div id="colorList" class="dropdown-content hidden">
+                  <button class="color" id="red" style="background-color: red"></button>
+                  <button class="color" id="orange" style="background-color: orange"></button>
+                  <button class="color" id="yellow" style="background-color: yellow"></button>
+                  <button class="color" id="green" style="background-color: green"></button>
+                  <button class="color" id="blue" style="background-color: blue"></button>
+                  <button class="color" id="purple" style="background-color: purple"></button>
+                  <button class="color" id="black" style="background-color: black"></button>
+                  <button class="color" id="white" style="background-color: white"></button>
+                </div>
+            </div>          
           </div>
         </div>
         <div id="right" class="sidebar column big">

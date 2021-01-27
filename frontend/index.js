@@ -28,8 +28,10 @@ sideBar.forEach(item => {
 
 
 //brushes
+let rememberedColor = "rgb(0, 0, 0)"
+
 function brushColor(color) {
-  ctx.strokeStyle = `rgb(${color})`
+  ctx.strokeStyle = `${color}`
 }
 
 function brushWeight(weight) {
@@ -40,24 +42,35 @@ function colorRecall() {
     brushColor(rememberedColor)
   }
 
-let rememberedColor = "0, 0, 0"
 document.getElementById("pencil").addEventListener("click", e => {
   brushWeight(1);
   colorRecall()
 })
   
 document.getElementById("marker").addEventListener("click", e => {
-  brushWeight(4);
+  brushWeight(8);
   colorRecall()
 })
 
-document.getElementById("eraser").addEventListener("click", e => {
-  brushColor("255, 232, 189")
-  brushWeight(8)
+document.getElementById("eraserDropdown").addEventListener("click", e => {
+  brushColor("rgb(255, 232, 189)")
+  if (e.target.id === "eraser") {
+    if (document.getElementById("eraserList").classList.contains("hidden")){
+      document.getElementById("eraserList").classList.remove("hidden")
+    } else {
+      document.getElementById("eraserList").classList.add("hidden")
+    }
+  }
+  if (e.target.id ==="small") {
+    brushWeight(8)
+  } else if (e.target.id === "medium") {
+    brushWeight(12)
+  } else if (e.target.id === "large") {
+    brushWeight(16)
+  }
 })
 
-let colorButton = document.getElementById("colorDropdown")
-colorButton.addEventListener("click", e => {
+document.getElementById("colorDropdown").addEventListener("click", e => {
   if (e.target.id === "color") {
     if (document.getElementById("colorList").classList.contains("hidden")){
       document.getElementById("colorList").classList.remove("hidden")
@@ -66,28 +79,18 @@ colorButton.addEventListener("click", e => {
     }
   }
 })
-document.getElementById("red").addEventListener("click", e => {
-  if (ctx.strokeStyle === 'rgb(255, 232, 189)') {
-    brushColor("255, 232, 189")
-  } else {
-    brushColor("144, 0, 0");
-    rememberedColor = "144, 0, 0";
-  }
-})
-document.getElementById("black").addEventListener("click", e => {
-  brushColor("0, 0, 0");
-  rememberedColor = "0, 0, 0";
-})
 
+let colors = Array.from(document.getElementsByClassName("color"))
 
-
+colors.forEach(color => color.addEventListener("click", function() {
+brushColor(color.id)
+rememberedColor = color.id
+}))
 
 //Map
 
   let map = document.getElementById('map')
   let ctx = map.getContext('2d');
-  ctx.strokeStyle = 'rgba(100, 200, 0, 1)';
-
 
   // create a flag
   let isActive = false;
