@@ -33,11 +33,18 @@
             <h4>A map game about community and struggle.</h4>
           </div>
           <div class="collapsed hidden">
-            <button id="pencil">Pencil</button>
+            <button id="pencil" class="dropbtn">Pencil</button>
             <button id="marker">Marker</button>
             <button id="eraser">Eraser</button>
-            <button id="color">Color</button>
+            <div id="colorDropdown">
+              <button id="color">Color</button>
+                <div id="colorList" class="dropdown-content hidden">
+                  <button class="color" id="red"></button>
+                  <button class="color" id="black"></button>
+                </div>
+            </div>
             <button id="highlight">Highlight</button>
+          
           </div>
         </div>
         <div id="right" class="sidebar column big">

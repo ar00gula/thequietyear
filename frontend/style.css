@@ -9,7 +9,7 @@
   body {
       height: 100%;
       width: 100%;
-      background-color: #e9ba698f;
+      background-color: #ffe8bd;
       margin: 0;
       padding: 0;      
   }
@@ -71,4 +71,19 @@
 
   .hidden {
     display: none;
+  }
+
+  /* buttons */
+
+  .color {
+    width: 20px;
+    height: 20px;
+  }
+
+  #red {
+    background-color: red;
+  }
+
+  #black {
+    background-color: black;
   }
