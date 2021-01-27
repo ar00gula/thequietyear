@@ -1,38 +1,27 @@
-let toggleBar = document.getElementById("toggle-bar")
+let sideBar = document.querySelectorAll(".sidebar")
 
-toggleBar.addEventListener("click", function() {
-    let bigContent = document.getElementById("fullsize")
-    let smolContent = document.getElementById("collapsed")
-    if (toggleBar.classList.contains("toolbar")) {
-    toggleBar.classList.remove("toolbar");
-    bigContent.classList.remove("hidden");
-    smolContent.classList.add("hidden");
+function changeSize(item, size) {
+  let bigContent = item.getElementsByClassName("fullsize");
+  let smolContent = item.getElementsByClassName("collapsed");
 
-    } else {
-        toggleBar.classList.add("toolbar");
-        bigContent.classList.add("hidden");
-        smolContent.classList.remove("hidden");
-    }
-})
-
-let rightSide = document.getElementById("right-side")
-
-rightSide.addEventListener("click", function() {
-  let rightChildren = document.getElementsByClassName("fullsize rightbar")
-  if (rightSide.classList.contains("sidebar")) {
-  rightSide.classList.remove("sidebar");
-  Array.from(rightChildren).forEach(function(child) {
-      child.classList.remove("hidden") 
-      });
+  if (item.classList.contains(size)) {
+  item.classList.remove(size);
+  bigContent[0].classList.remove("hidden");
+  smolContent[0].classList.add("hidden");
 
   } else {
-      rightSide.classList.add("sidebar");
-      Array.from(rightChildren).forEach(function(child) {
-          child.classList.add("hidden") 
-          });
+      item.classList.add(size);
+      bigContent[0].classList.add("hidden");
+      smolContent[0].classList.remove("hidden");
   }
-})
+}
 
+sideBar.forEach(item => {
+  item.addEventListener("click", function(e) {
+    changeSize(item, "smol");
+  })
+})
+    
 //Map
 
   let map = document.getElementById('map')

@@ -36,16 +36,16 @@
     overflow: scroll;
   }
 
-  .left {
+  #left {
     background-color:#5e3b3b;
   }
 
-  .right {
+  #right {
     right: 0;
     background-color: #544343;
   }
   
-  .toolbar {
+  .smol {
     min-width: 60px;
     width: 60px;
     min-height: 200px;
@@ -53,7 +53,7 @@
     bottom: auto;
   }
 
-  .sidebar {
+  .mid {
     min-width: 60px;
     width: 60px;
   }
