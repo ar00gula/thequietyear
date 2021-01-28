@@ -5,6 +5,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script defer src="index.js" charset="utf-8"></script>
+<script defer src="src/map.js" charset="utf-8"></script>
+<script defer src="src/cards.js" charset="utf-8"></script>
+<script defer src="src/brushes.js" charset="utf-8"></script>
+
+
+
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>    
@@ -51,13 +58,27 @@
             <h3>Projects</h3>
             <h3>Journal</h3>
             <div class="card-piles">
-              <img class="card" src="images/quietyearcard.jpg">
-              <img class="card" src="images/blankcard.png">
-            </div>
+              <div class="flip-card" id="flip-card">
+                <div class="flip-card-inner" id="flip-card-inner">
+                  <div class="flip-card-front">
+                    <img class="card" id="draw-card" src="images/quietyearcard.jpg">
+                  </div>
+                  <div class="flip-card-back" id="flip-card-back">
+            
+                  </div>
+                </div>
+              </div>
+            <img class="card" id="discard-pile" src="images/blankcard.png">
+          </div>
+          </div>
+
+            <!-- <div class="card-piles">
+              <img class="card" id="draw-pile" src="images/quietyearcard.jpg">
+              <img class="card" id="discard-pile" src="images/blankcard.png">
+            </div> -->
           <div class="collapsed hidden">
             <h4>hi there</h4>
           </div>
-        </div>
 </div>
 
 <!-- </div> -->
