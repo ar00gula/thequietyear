@@ -4,24 +4,19 @@ let flipCardFront = document.getElementById("flip-card-front")
 let flipCardBack = document.getElementById("flip-card-back")
 let drawnCard = ""
 let i = 0
+let deck
+
+fetchDeck()
 
 drawCard.addEventListener("click", function() {
     
-    fetchCard().then(drawnCard => flipCard(drawnCard)).then(resp => setTimeout(function() {resetCard()}, 1000))
+    flipCard(deck[i]["image"]).then(resp => setTimeout(function() {resetCard(resp)}, 1000))
 
 })
 
-// function fetchCard() {
-
-//     if (i < 52) {
-//     return fetch('http://localhost:3000/cards/').then(resp => resp.json()).then(object => {
-//         drawnCard = object[i]["image"]
-//         i += 1
-//         return drawnCard})
-//     } else {
-//         return "images/blankcard.png"
-//     }
-// }
+function fetchDeck() {
+    fetch('http://localhost:3000/cards/').then(resp => resp.json()).then(object => deck = object)
+}
 
 function flipCard(drawnCard) {
     if (flipCardBack.classList.contains("flip-card-back") === false) {
@@ -31,11 +26,12 @@ function flipCard(drawnCard) {
     }
     flipCardInner.classList.add("transform")
     flipCardBack.style.backgroundImage = `url('${drawnCard}')`//"url('images/kingofspring.png')" 
-
-    return "hoorah!"
+    i+=1
+    let promise = new Promise (resolve => resolve(drawnCard))
+    return promise
 }
 
-function resetCard() {
+function resetCard(drawnCard) {
     document.getElementById("discard-pile").src = drawnCard //"images/kingofspring.png" //newCard
     
     flipCardFront.classList.remove("flip-card-front")
