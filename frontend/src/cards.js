@@ -2,16 +2,26 @@ let drawCard = document.getElementById("draw-card")
 let flipCardInner = document.getElementById("flip-card-inner")
 let flipCardFront = document.getElementById("flip-card-front")
 let flipCardBack = document.getElementById("flip-card-back")
-let drawnCard = ""
+let drawnCard = document.getElementById("discard-pile")
 let i = 0
 let deck
+let popup = document.getElementById("popup")
+
 
 fetchDeck()
 
 drawCard.addEventListener("click", function() {
-    
     flipCard(deck[i]["image"]).then(resp => setTimeout(function() {resetCard(resp)}, 1000))
+})
 
+drawnCard.addEventListener("dblclick", function() {
+    popup.src = deck[i]["image"]
+    popup.className = "show"
+})
+
+popup.addEventListener("dblclick", function() {
+    popup.src = ""
+    popup.className = "hidden"
 })
 
 function fetchDeck() {

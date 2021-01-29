@@ -197,4 +197,11 @@
     transform: rotateY(180deg) translate(10px);
   }
 
-  
+  #popup {
+    width: 334px;
+    height: 452px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: -1px;
+    transform: translate(-2px);
+  }
