@@ -3,6 +3,7 @@ let flipCardInner = document.getElementById("flip-card-inner")
 let flipCardFront = document.getElementById("flip-card-front")
 let flipCardBack = document.getElementById("flip-card-back")
 let drawnCard = ""
+let i = 0
 
 drawCard.addEventListener("click", function() {
     
@@ -10,11 +11,17 @@ drawCard.addEventListener("click", function() {
 
 })
 
-function fetchCard() {
-    return fetch('http://localhost:3000/cards/').then(resp => resp.json()).then(object => {
-        drawnCard = object["image"]
-        return drawnCard})
-}
+// function fetchCard() {
+
+//     if (i < 52) {
+//     return fetch('http://localhost:3000/cards/').then(resp => resp.json()).then(object => {
+//         drawnCard = object[i]["image"]
+//         i += 1
+//         return drawnCard})
+//     } else {
+//         return "images/blankcard.png"
+//     }
+// }
 
 function flipCard(drawnCard) {
     if (flipCardBack.classList.contains("flip-card-back") === false) {

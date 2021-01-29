@@ -2,7 +2,7 @@ class CardsController < ApplicationController
 
     def index
         cards = {spring: Card.where(suite: 'hearts'), summer: Card.where(suite: 'diamonds')}
-        render json: shuffleDeck(cards)
+        render json: cards
     end
 
 private
