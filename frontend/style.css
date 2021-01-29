@@ -170,6 +170,10 @@
     transform-origin: right;
   }
 
+  .put-back-back {
+    transform: translate(-10px)
+  }
+
 
   .flip-card-front, .flip-card-back {
     position: absolute;

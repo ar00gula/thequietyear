@@ -2,43 +2,47 @@ let drawCard = document.getElementById("draw-card")
 let flipCardInner = document.getElementById("flip-card-inner")
 let flipCardFront = document.getElementById("flip-card-front")
 let flipCardBack = document.getElementById("flip-card-back")
+let drawnCard = ""
+
 // let drawCardBack = document.getElementById("flip-card-back")
 
 drawCard.addEventListener("click", function() {
-    flipCard()
-    document.getElementById("discard-pile").src = "images/kingofspring.png"
+    // fetch('http://localhost:3000/cards/').then(response => response.json()).then(object => newCard = object["image"])
+    
+    fetchCard().then(drawnCard => flipCard(drawnCard)).then(go => reset)
 
 })
 
-// drawCard.addEventListener("mouseup", function() {
-//     flipCardInner.classList.remove("transform")
-// })
-
-// drawCard.addEventListener("mouseup", function() {
-//     // document.getElementById("flip-card-inner").classList.remove("transform")
-//     // document.getElementById("flip-card-front").classList.remove("transform")
-
-// })
-
-// drawCardBack.addEventListener("click", function() {
-//     flipCardBack()
-// })
-
-function flipCard() {
-    if (flipCardFront.classList.contains("put-back")) {
-        flipCardFront.classList.remove("put-back")
-    }
-    flipCardInner.classList.add("transform")
-    // let img = document.createElement("img")
-    // img.src = "images/kingofspring.png"
-
-    flipCardBack.style.backgroundImage = "url('images/kingofspring.png')"
-    // document.getElementById("flip-card-front").classList.add("transform")
-    // flipCardFront.classList.add("put-back")
-
+function fetchCard() {
+    return fetch('http://localhost:3000/cards/').then(resp => resp.json()).then(object => {
+        drawnCard = object["image"]
+        return drawnCard})
 }
 
-// function flipCardBack() {
-//     document.getElementById("flip-card").classList.remove("transform")
-//     document.getElementById("flip-card-inner").classList.remove("transform")
-// }
+function flipCard(drawnCard) {
+    if (flipCardBack.classList.contains("flip-card-back") === false) {
+        flipCardBack.classList.add("flip-card-back")
+        flipCardInner.classList.add("flip-card-inner")
+        flipCardFront.classList.add("flip-card-front")
+    }
+    flipCardInner.classList.add("transform")
+    flipCardBack.style.backgroundImage = `url('${drawnCard}')`//"url('images/kingofspring.png')" 
+
+    return "now"
+}
+
+function setReset(now) {
+    if (now === "now") {
+    reset = setTimeout(resetCard(), 1000)
+    }
+    }
+
+function resetCard() {
+    document.getElementById("discard-pile").src = drawnCard //"images/kingofspring.png" //newCard
+    
+    flipCardFront.classList.remove("flip-card-front")
+    flipCardBack.classList.remove("flip-card-back")
+    flipCardBack.style.backgroundImage = ""
+    flipCardInner.classList.remove("flip-card-inner")
+    flipCardInner.classList.remove("transform")
+}
