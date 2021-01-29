@@ -7,9 +7,8 @@ let drawnCard = ""
 // let drawCardBack = document.getElementById("flip-card-back")
 
 drawCard.addEventListener("click", function() {
-    // fetch('http://localhost:3000/cards/').then(response => response.json()).then(object => newCard = object["image"])
     
-    fetchCard().then(drawnCard => flipCard(drawnCard)).then(go => reset)
+    fetchCard().then(drawnCard => flipCard(drawnCard)).then(resp => setTimeout(function() {resetCard()}, 1000))
 
 })
 
@@ -28,14 +27,8 @@ function flipCard(drawnCard) {
     flipCardInner.classList.add("transform")
     flipCardBack.style.backgroundImage = `url('${drawnCard}')`//"url('images/kingofspring.png')" 
 
-    return "now"
+    return "hoorah!"
 }
-
-function setReset(now) {
-    if (now === "now") {
-    reset = setTimeout(resetCard(), 1000)
-    }
-    }
 
 function resetCard() {
     document.getElementById("discard-pile").src = drawnCard //"images/kingofspring.png" //newCard
