@@ -13,6 +13,16 @@ class ResourcesController < ApplicationController
               render json: @resource.errors, status: :unprocessable_entity
             end
     end
+
+    def update
+        @resource = Resource.find(params[:id])
+        @resource.status = resource_params[:status]
+        if @resource.save
+          render json: @resource, status: :created, location: @resource
+        else
+          render json: @resource.errors, status: :unprocessable_entity
+        end
+    end
 end
 
 

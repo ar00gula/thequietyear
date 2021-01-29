@@ -30,8 +30,7 @@
     display: block;
     bottom: 0;
     height: 100%;
-    min-width: 250px;
-    width: 25%;
+    width: 360px;
     position: fixed;
     overflow: scroll;
   }
@@ -129,13 +128,13 @@
     display: flex;
     position: fixed;
   }
+
   .card {
     width: 161px;
     height: 220px;
     border-radius: 20px;
   }
 
-  
 
   .flip-card {
     background-color: transparent;
@@ -146,7 +145,7 @@
     border: 1px solid #f1f1f1;
     border-radius: 20px;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
-    margin-right: 9px
+    margin-right: 15px
   }
 
   .flip-card-inner {
@@ -157,7 +156,7 @@
     transition: transform 1s;
     transform-style: preserve-3d;
     transform-origin: right;
-    margin-right: 9px;
+    margin-right: 15px;
   }
 
   .transform {
@@ -170,15 +169,11 @@
     transform-origin: right;
   }
 
-  .put-back-back {
-    transform: translate(-10px)
-  }
-
 
   .flip-card-front, .flip-card-back {
     position: absolute;
-    width: 100%;
     height: 100%;
+    width: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
   }
@@ -194,7 +189,7 @@
     background-color: grey;
     background-size: cover;
     color: white;
-    transform: rotateY(180deg) translate(10px);
+    transform: rotateY(180deg) translate(17px);
   }
 
   #popup {

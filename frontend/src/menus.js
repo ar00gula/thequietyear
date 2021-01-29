@@ -20,21 +20,65 @@ addButton.addEventListener("click", function() {
     if (resource == null || resource == "") {
         alert("resource creation failed!")
     } else {
-
         createResource(resource).then(resp => {
-        li.innerHTML = resource
-        document.getElementById("resource-list").appendChild(li).appendChild(button);
-        button.addEventListener("click", function() {
-            if (confirm("Is this resource a scarcity?")) {
-                li.style.color = "red"
-            } else {
-                li.style.color = "black"
+            let status
+            li.innerHTML = resource
+            document.getElementById("resource-list").appendChild(li).appendChild(button);
+            button.addEventListener("click", function() {
+                if (confirm("Is this resource a scarcity?")) {
+                    li.style.color = "red"
+                    status = "scarcity"
+                } else {
+                    li.style.color = "black"
+                    status = "abundance"
+                }
+    
+            let statusChange = {
+                status: status
+            };
+            
+            let configObj = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(statusChange)
             }
+            fetch(`http://localhost:3000/resources/${resp}`, configObj)
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(object) {
+                    console.log(object)
+                })
+            })
         })
-        })
-        
     }
 })
+
+        // }).then(array => {
+        //     let statusChange = {
+        //         status: array[0]
+        //     };
+            
+        //     let configObj = {
+        //         method: "PATCH",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             "Accept": "application/json"
+        //         },
+        //         body: JSON.stringify(statusChange)
+        //     }
+        //     return fetch(`http://localhost:3000/resources/${array[1]}`, configObj)
+        //         .then(function(response) {
+        //             return response.json();
+        //         })
+        //         .then(function(object) {
+        //             console.log(object)
+        //         })
+        //     })
+        // } 
         
 
 
@@ -58,6 +102,29 @@ function createResource(resource) {
             return response.json();
         })
         .then(function(object) {
-            console.log(object)
+            return object.id
         })
 }
+
+// function updateResource(statusArray) {
+
+//     let statusChange = {
+//         status: statusArray[0]
+//     };
+    
+//     let configObj = {
+//         method: "PATCH",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Accept": "application/json"
+//         },
+//         body: JSON.stringify(statusChange)
+//     }
+//     return fetch(`http://localhost:3000/resources/${statusArray[1]}`, configObj)
+//         .then(function(response) {
+//             return response.json();
+//         })
+//         .then(function(object) {
+//             console.log(object)
+//         })
+// }
