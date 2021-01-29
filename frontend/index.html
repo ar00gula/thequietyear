@@ -8,6 +8,8 @@
 <script defer src="src/map.js" charset="utf-8"></script>
 <script defer src="src/cards.js" charset="utf-8"></script>
 <script defer src="src/brushes.js" charset="utf-8"></script>
+<script defer src="src/menus.js" charset="utf-8"></script>
+
 
 
 
@@ -53,7 +55,11 @@
         </div>
         <div id="right" class="sidebar column big">
           <div class="fullsize">
-            <h3>Resources</h3>
+            <h3 id="resources">Resources</h3>
+              <div id="resource-menu" class="hidden">
+                <ul id="resource-list""></ul>
+                <button id="add-resource">+</button>
+              </div>
             <h3>Contempt</h3>
             <h3>Projects</h3>
             <h3>Journal</h3>

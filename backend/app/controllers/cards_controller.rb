@@ -13,13 +13,4 @@ private
         shuffledDeck = shuffledSpring + shuffledSummer
     end
 
-    # def random(cards)
-    #     spring = cards[spring]
-    #     summer = cards[summer]
-    #     autumn = cards[autumn]
-    #     winter = cards[winter]
-
-    #     return drawCard(spring)
-    # end
-
 end
