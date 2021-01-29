@@ -4,8 +4,6 @@ let flipCardFront = document.getElementById("flip-card-front")
 let flipCardBack = document.getElementById("flip-card-back")
 let drawnCard = ""
 
-// let drawCardBack = document.getElementById("flip-card-back")
-
 drawCard.addEventListener("click", function() {
     
     fetchCard().then(drawnCard => flipCard(drawnCard)).then(resp => setTimeout(function() {resetCard()}, 1000))

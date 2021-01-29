@@ -1,17 +1,16 @@
 class CardsController < ApplicationController
 
     def index
-        cards = Card.all
-        card = drawCard(cards)
-        render json: card
+        cards = {spring: Card.where(suite: 'hearts'), summer: Card.where(suite: 'diamonds')}
+        render json: shuffleDeck(cards)
     end
 
 private
 
-    def drawCard(array)
-        index = 1 + rand(array.count)
-        card = array[index]
-        return card
+    def shuffleDeck(object)
+        shuffledSpring = object[:spring].shuffle
+        shuffledSummer = object[:summer].shuffle
+        shuffledDeck = shuffledSpring + shuffledSummer
     end
 
     # def random(cards)
