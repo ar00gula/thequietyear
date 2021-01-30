@@ -57,36 +57,51 @@ addButton.addEventListener("click", function() {
     }
 })
 
-        // }).then(array => {
-        //     let statusChange = {
-        //         status: array[0]
-        //     };
-            
-        //     let configObj = {
-        //         method: "PATCH",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             "Accept": "application/json"
-        //         },
-        //         body: JSON.stringify(statusChange)
-        //     }
-        //     return fetch(`http://localhost:3000/resources/${array[1]}`, configObj)
-        //         .then(function(response) {
-        //             return response.json();
-        //         })
-        //         .then(function(object) {
-        //             console.log(object)
-        //         })
-        //     })
-        // } 
-        
+class Resource {
+    constructor(name) {
+        this.name = name
+        this.status = "abundence"
+    }
 
+    set status(status) {
+        this.status = status;
+    }
 
-function createResource(resource) {
-    let resourceData = {
-        name: resource,
-        status: "abundence"
-    };
+    get fetchInfo() { 
+        return {
+        "name": this.name,
+        "status": this.status,
+        "apiLink": "resources"
+        }
+    }
+}
+
+class Project {
+    constructor(name, weeks, player, description) {
+        this.name = name
+        this.weeks = weeks;
+        this.player = player;
+        this.description = description;
+        this.update = ""
+      }
+
+    set update(update) {
+        this.update = update;
+    }
+
+    get fetchInfo() { 
+        return {
+        "name": this.name,
+        "weeks": this.weeks,
+        "player": this.player,
+        "description": this.description,
+        "update": this.update,
+        "apiLink": "projects"
+        }
+    }
+}
+
+function manipulateData(data) {
     
     let configObj = {
         method: "POST",
@@ -94,10 +109,10 @@ function createResource(resource) {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify(resourceData)
+        body: JSON.stringify(data.fetchInfo())
     }
 
-    return fetch("http://localhost:3000/resources", configObj)
+    return fetch(`http://localhost:3000/${data.fetchInfo().apiLink}`, configObj)
         .then(function(response) {
             return response.json();
         })
@@ -105,26 +120,3 @@ function createResource(resource) {
             return object.id
         })
 }
-
-// function updateResource(statusArray) {
-
-//     let statusChange = {
-//         status: statusArray[0]
-//     };
-    
-//     let configObj = {
-//         method: "PATCH",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Accept": "application/json"
-//         },
-//         body: JSON.stringify(statusChange)
-//     }
-//     return fetch(`http://localhost:3000/resources/${statusArray[1]}`, configObj)
-//         .then(function(response) {
-//             return response.json();
-//         })
-//         .then(function(object) {
-//             console.log(object)
-//         })
-// }
