@@ -30,18 +30,17 @@ sideBar.forEach(item => {
 
 //Rulebook
 
-document.getElementById("rule-heading").addEventListener('click', e => toggleHidden(document.getElementById("rulebook")))
+document.getElementById("rule-heading").addEventListener("click", e => toggleHidden(document.getElementById("rulebook")))
 
 function renderChapter(chapter) {
   let chapNum = "ch" + chapter[0]['chapter']
   chapter.forEach(page => {
     let section = document.createElement('li')
     let span = document.createElement('span')
-    let chapterHeading = document.getElementById(`${chapNum}`)
-    span.innerHTML = page['text']
+    span.innerHTML = `${page['text']}<br><br>`
     span.classList.add("hidden")
-    section.innerHTML = `<h4>${page['name']}</h4>`
-    chapterHeading.appendChild(section).appendChild(span)
+    section.innerHTML = `<h4 class='page'>${page['name']}</h4>`
+    document.getElementById(`${chapNum}`).appendChild(section).appendChild(span)
     section.addEventListener('click', e => toggleHidden(span))
   })
   document.getElementById(`${chapNum}-container`).addEventListener('click', e => toggleHidden(document.getElementById(chapNum)))

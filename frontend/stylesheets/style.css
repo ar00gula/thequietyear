@@ -20,20 +20,11 @@
       padding: 0;      
   }
 
+  .hidden {
+    display: none;
+  }
 
-/* text styles */
-
-/* #footer {
-  position : fixed;
-  bottom : 0;
-  height : 40px;
-  width: 100%;
-  background-color: #1e180d;
-}
-#footer p {
-    margin: 10px;
-    color: #8b939c;
-} */
+/* Menus */
 
 .column {
   display: block;
@@ -54,36 +45,24 @@
 }
 
 .smol {
-  min-width: 60px;
   width: 60px;
   min-height: 300px;
   height: auto;
   bottom: auto;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
 }
 
-.mid {
-  min-width: 60px;
-  width: 60px;
-}
-
-/* Clears floats after the columns */
-.row:after {
+.row:after {     /* Clears floats after the columns */
   content: "";
   display: table;
   clear: both;
-}
+} 
 
 .fullsize {
     padding: 10px;
 }
 
-.hidden {
-  display: none;
-}
-
-/* buttons */
-
+/*toolbar*/
 .color {
   display: inline block;
   width: 22.5px;
@@ -99,10 +78,10 @@
   display: flex;
   margin: auto;
 }
+
 #small {
   width: 20px;
   height: 10px;
-
 }
 
 #medium {
@@ -129,6 +108,8 @@
 
 }
 
+/* buttons */
+
 /*Resources*/
 
 .resources {
@@ -152,8 +133,20 @@
 /*rulebook*/
 
 #rulebook {
-  margin-left: 30px;
+  margin-left: 20px;
+  margin-bottom: 0px;
 }
+
+.page {
+  margin: 0px 0px 5px 0px;
+}
+
+h5 {
+  /* padding: 0px; */
+  margin: 0px 0px 5px 0px;
+  font-size: 17px;
+}
+
 
 /* modal */
 
