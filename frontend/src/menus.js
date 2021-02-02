@@ -1,118 +1,122 @@
 const resources = document.getElementById("resources")
 const resourceMenu = document.getElementById("resource-menu")
-const addButton = document.getElementById("add-resource")
-let statusButtons
+const addResourceButton = document.getElementById("add-resource")
+const resourceModal = document.getElementById("resourceModal");
+
+const projects = document.getElementById("projects")
+const projectMenu = document.getElementById("project-menu")
+const addProjectButton = document.getElementById("add-project")
+// const projectModal = document.getElementById("projectModal");
+
 
 resources.addEventListener("click", function() {
-    if (resourceMenu.classList.contains("hidden")) {
-        resourceMenu.classList.remove("hidden")
-    } else {
-        resourceMenu.classList.add("hidden")
-    }
+    toggleHidden(resourceMenu)
 })
 
-addButton.addEventListener("click", function() {
-    let resource = prompt("Enter resource name:", "")
+// modalSetup(addResourceButton, resourceModal, 0)
+
+
+addResourceButton.addEventListener("click", function() {
+    let resourceName = prompt("Enter resource name:", "")
     let li = document.createElement("li")
     let button = document.createElement("button")
     button.className = "status-button"
 
-    if (resource == null || resource == "") {
+    if (resourceName === null || resourceName === "") {
         alert("resource creation failed!")
     } else {
-        createResource(resource).then(resp => {
-            let status
-            li.innerHTML = resource
+        let resource = new Resource(resourceName)
+        createData(resource).then(resp => {
+            li.innerHTML = resource.name
             document.getElementById("resource-list").appendChild(li).appendChild(button);
             button.addEventListener("click", function() {
                 if (confirm("Is this resource a scarcity?")) {
                     li.style.color = "red"
-                    status = "scarcity"
+                    resource.update = "scarcity"
                 } else {
                     li.style.color = "black"
-                    status = "abundance"
+                    resource.update = "abundance"
                 }
-    
-            let statusChange = {
-                status: status
-            };
-            
-            let configObj = {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify(statusChange)
-            }
-            fetch(`http://localhost:3000/resources/${resp}`, configObj)
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(object) {
-                    console.log(object)
-                })
+            updateData(resource, resp)
             })
         })
     }
 })
 
-class Resource {
-    constructor(name) {
-        this.name = name
-        this.status = "abundence"
+projects.addEventListener("click", function() {
+    toggleHidden(projectMenu)
+})
+
+modalSetup("project", addProjectButton, 0)
+
+// functions
+
+function modalSetup(cat, catButton, spanIndex) {
+    const form = document.getElementById(`${cat}-form`);
+    const span = document.getElementsByClassName("close");
+    const modal = document.getElementById(`${cat}Modal`);
+
+    catButton.onclick = function() {
+        modal.style.display = "block";
+    }
+    span[spanIndex].onclick = function() {
+        modal.style.display = "none"
     }
 
-    set status(status) {
-        this.status = status;
-    }
-
-    get fetchInfo() { 
-        return {
-        "name": this.name,
-        "status": this.status,
-        "apiLink": "resources"
+    window.onclick = function(e) {
+        if (e.target == modal) {
+            modal.style.display = "none";
         }
+    }
+
+    document.getElementById(`${cat}-submit`).addEventListener("click", function(e) {
+        form
+        debugger
+        e.preventDefault()
+        modal.style.display = "none"
+        const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify()
+            }
+        
+
+        return fetch(`http://localhost:3000/${cat}s`, configObj)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(object) {
+            return object.id
+        })
+    })
+}
+
+function toggleHidden(category) {
+    if (category.classList.contains("hidden")) {
+        category.classList.remove("hidden")
+    } else {
+        category.classList.add("hidden")
     }
 }
 
-class Project {
-    constructor(name, weeks, player, description) {
-        this.name = name
-        this.weeks = weeks;
-        this.player = player;
-        this.description = description;
-        this.update = ""
-      }
-
-    set update(update) {
-        this.update = update;
-    }
-
-    get fetchInfo() { 
-        return {
-        "name": this.name,
-        "weeks": this.weeks,
-        "player": this.player,
-        "description": this.description,
-        "update": this.update,
-        "apiLink": "projects"
-        }
-    }
-}
-
-function manipulateData(data) {
-    
+function createData(data) {
+    let canUpdate = Object.keys(data.fetchInfo.xtra.updateable)[0]
     let configObj = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify(data.fetchInfo())
-    }
+        body: JSON.stringify({
+            "name": data.fetchInfo.name,
+            [canUpdate]: data.fetchInfo.xtra.updateable[canUpdate]
+            })
+        }
 
-    return fetch(`http://localhost:3000/${data.fetchInfo().apiLink}`, configObj)
+    return fetch(`http://localhost:3000/${data.fetchInfo.xtra.apiLink}`, configObj)
         .then(function(response) {
             return response.json();
         })
@@ -120,3 +124,25 @@ function manipulateData(data) {
             return object.id
         })
 }
+
+function updateData(data, resp) {
+    
+    let configObj = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(data.fetchInfo.xtra.updateable)
+    }
+
+    return fetch(`http://localhost:3000/${data.fetchInfo.xtra.apiLink}/${resp}`, configObj)
+        .then(function(response) {
+            return response.json();
+        })
+        .catch(function(error) {
+            alert("Did not persist to database!");
+            console.log(error.message)
+        })
+}
+

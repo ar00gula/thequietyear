@@ -3,8 +3,8 @@ class CreateProjects < ActiveRecord::Migration[6.0]
     create_table :projects do |t|
       t.string :name
       t.string :weeks
-      t.string :player
       t.string :description
+      t.integer :player_id
 
       t.timestamps
     end

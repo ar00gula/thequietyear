@@ -9,8 +9,8 @@
 <script defer src="src/cards.js" charset="utf-8"></script>
 <script defer src="src/brushes.js" charset="utf-8"></script>
 <script defer src="src/menus.js" charset="utf-8"></script>
-
-
+<script defer src="src/objectClasses.js" charset="utf-8"></script>
+<script defer src="src/players.js" charset="utf-8"></script>
 
 
 
@@ -26,6 +26,9 @@
           <div class="fullsize">
             <h2>The Quiet Year</h2>
             <h4>A map game about community and struggle.</h4>
+            <div id="players">Players <button id="add-player">+</button>
+              <ul id="player-list"></ul>
+            </div>
           </div>
           <div class="collapsed hidden">
             <button class="first-level" id="pencil" class="dropbtn"><p>Pencil</p></button>
@@ -53,15 +56,61 @@
             </div>          
           </div>
         </div>
+
         <div id="right" class="sidebar column big">
           <div class="fullsize">
             <h3 id="resources">Resources</h3>
               <div id="resource-menu" class="hidden">
-                <ul id="resource-list""></ul>
+                <ul id="resource-list"></ul>
                 <button id="add-resource">+</button>
               </div>
+              <!-- <div id="resourceModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name"><br>
+                    <label for="status">Status:</label>
+                    <select id="status" name="status">
+                      <option value="abundance">abundance</option>
+                      <option value="scarcity">scarcity</option>
+                      <option value="undeclared">undeclared</option>
+                    </select>
+                    <input type="submit" id="resource-submit">
+                  </form>
+                </div>
+              </div> -->
             <h3>Contempt</h3>
-            <h3>Projects</h3>
+            <h3 id="projects">Projects</h3>
+              <div id="project-menu" class="hidden">
+                <ul id="project-list"></ul>
+                <button id="add-project">+</button>
+              </div>
+              <div id="projectModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <form id="project-form">
+                    <label for="name">Name:</label>
+                    <input tag="project-form" type="text" id="name" name="projects[name]"><br>
+                    <label for="weeks">Weeks:</label>
+                    <select tag="project-form" id="weeks" id="weeks" name="projects[weeks]">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select><br>
+                    <label for="player">Player:</label>
+                    <select tag="project-form" id="player-names" name="projects[player_id]">
+          
+                    </select><br>
+                    <label for="description">Description:</label>
+                    <textarea tag="project-form" id="description" name="projects[description]" rows="5" cols="50" placeholder="Briefly describe your project"></textarea><br>
+                    <input type="submit" id="project-submit" value="Create Project">
+                  </form>
+                </div>
+              </div>
             <h3>Journal</h3>
             <div class="card-piles">
               <div class="flip-card" id="flip-card">

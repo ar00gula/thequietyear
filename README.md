@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+* What's coming next?
+    - Ability to create and save games
+    - Icons instead of labels for whiteboard
