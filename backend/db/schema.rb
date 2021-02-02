@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_214101) do
+ActiveRecord::Schema.define(version: 2021_02_02_172451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(version: 2021_02_01_214101) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rulebook_pages", force: :cascade do |t|
+    t.integer "chapter"
+    t.string "name"
+    t.text "text"
   end
 
 end

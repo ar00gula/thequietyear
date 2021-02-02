@@ -27,3 +27,33 @@ sideBar.forEach(item => {
     }
   })
 })
+
+//Rulebook
+
+document.getElementById("rule-heading").addEventListener('click', e => toggleHidden(document.getElementById("rulebook")))
+
+function renderChapter(chapter) {
+  let chapNum = "ch" + chapter[0]['chapter']
+  chapter.forEach(page => {
+    let section = document.createElement('li')
+    let span = document.createElement('span')
+    let chapterHeading = document.getElementById(`${chapNum}`)
+    span.innerHTML = page['text']
+    span.classList.add("hidden")
+    section.innerHTML = `<h4>${page['name']}</h4>`
+    chapterHeading.appendChild(section).appendChild(span)
+    section.addEventListener('click', e => toggleHidden(span))
+  })
+  document.getElementById(`${chapNum}-container`).addEventListener('click', e => toggleHidden(document.getElementById(chapNum)))
+
+}
+
+fetch(`http://localhost:3000/rules`)
+  .then(function(response) {
+      return response.json();
+  })
+  .then(function(object) {
+   renderChapter(object['chapter_one'])
+   renderChapter(object['chapter_two'])
+  })
+

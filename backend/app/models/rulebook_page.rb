@@ -1,0 +1,2 @@
+class RulebookPage < ApplicationRecord
+end

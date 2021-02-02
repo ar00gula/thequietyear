@@ -27,7 +27,7 @@ drawCard.addEventListener("click", function() {
 })
 
 drawnCard.addEventListener("dblclick", function() {
-    popup.src = deck[i]["image"]
+    popup.src = deck[i-1]["image"]
     popup.className = "show"
 })
 

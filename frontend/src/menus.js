@@ -55,7 +55,6 @@ function modalSetup(cat, catButton, spanIndex) {
     const form = document.getElementById(`${cat}-form`);
     const span = document.getElementsByClassName("close");
     const modal = document.getElementById(`${cat}Modal`);
-    const li = document.createElement("span")
 
     catButton.onclick = function() {
         modal.style.display = "block";
@@ -72,8 +71,13 @@ function modalSetup(cat, catButton, spanIndex) {
 
     document.getElementById(`${cat}-submit`).addEventListener("click", function(e) {
         e.preventDefault()
-        const keys = Array.from(form.elements).map(element => element.id)
-        const values = Array.from(form.elements).map(element => element.value)
+        let li = document.createElement("li")
+        // let again = document.createElement("li")
+        document.getElementById("project-list").appendChild(li)     
+        let formElements = Array.from(form.elements)
+        const keys = formElements.map(element => element.id)
+        const values = formElements.map(element => element.value)
+        formElements.forEach(element => element.value = "")
         // debugger
         let formData = {}
         for (let i=0; i < keys.length; i++) {
@@ -96,14 +100,10 @@ function modalSetup(cat, catButton, spanIndex) {
         })
         .then(function(object) {
             const playerName = document.getElementById(object.player_id).innerHTML
-            let again = document.createElement("li")
-            again.innerHTML = object.weeks
-            again.classList.add('weeks')
-            li.innerHTML = `<strong>${object.name}</strong><br>Description: ${object.description}<br>Player: ${playerName}<br>Weeks Remaining:`
-            document.getElementById("project-list").appendChild(li).appendChild(again);
+            li.innerHTML = `<strong>${object.name}</strong><br>Description: ${object.description}<br>Player: ${playerName}<br>Weeks Remaining:<li class="weeks">${object.weeks}</li>`
         })
-    })
 
+    })
 }
 
 function toggleHidden(category) {
