@@ -96,9 +96,11 @@ function modalSetup(cat, catButton, spanIndex) {
         })
         .then(function(object) {
             const playerName = document.getElementById(object.player_id).innerHTML
-
-            li.innerHTML = `<strong>${object.name}</strong><br>Weeks Remaining: ${object.weeks}<br>Description: ${object.description}<br>Player: ${playerName}`
-            document.getElementById("project-list").appendChild(li);
+            let again = document.createElement("li")
+            again.innerHTML = object.weeks
+            again.classList.add('weeks')
+            li.innerHTML = `<strong>${object.name}</strong><br>Description: ${object.description}<br>Player: ${playerName}<br>Weeks Remaining:`
+            document.getElementById("project-list").appendChild(li).appendChild(again);
         })
     })
 

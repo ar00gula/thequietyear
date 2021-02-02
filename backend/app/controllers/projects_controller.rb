@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
     end
     
     def create
-      byebug
             @project = Project.new(project_params)
             if @project.save
               render json: @project, status: :created, location: @project

@@ -1,5 +1,4 @@
 // const players = document.getElementById("players")
-
 document.getElementById("add-player").addEventListener('click', function() {
     const playerName = prompt("Enter player name:")
     const li = document.createElement("li")
@@ -18,6 +17,3 @@ document.getElementById("add-player").addEventListener('click', function() {
         })
     }
 })
-
-
-

@@ -12,6 +12,18 @@ fetchDeck()
 
 drawCard.addEventListener("click", function() {
     flipCard(deck[i]["image"]).then(resp => setTimeout(function() {resetCard(resp)}, 1000))
+    let weekCounter = Array.from(document.getElementsByClassName("weeks"))
+    weekCounter.forEach(element => {
+        let weeksLeft = parseInt(element.innerHTML)
+        if (weeksLeft > 1) {
+        element.innerHTML = weeksLeft - 1
+        } else if (weeksLeft == 1){
+            alert("Project completed!")
+            element.innerHTML = weeksLeft - 1
+        } else {
+            element.parentElement.classList.add("hidden") //change this to complete when refactoring and adding functionality
+        }
+    })
 })
 
 drawnCard.addEventListener("dblclick", function() {
