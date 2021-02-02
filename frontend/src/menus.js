@@ -55,6 +55,7 @@ function modalSetup(cat, catButton, spanIndex) {
     const form = document.getElementById(`${cat}-form`);
     const span = document.getElementsByClassName("close");
     const modal = document.getElementById(`${cat}Modal`);
+    const li = document.createElement("span")
 
     catButton.onclick = function() {
         modal.style.display = "block";
@@ -70,9 +71,15 @@ function modalSetup(cat, catButton, spanIndex) {
     }
 
     document.getElementById(`${cat}-submit`).addEventListener("click", function(e) {
-        form
-        debugger
         e.preventDefault()
+        const keys = Array.from(form.elements).map(element => element.id)
+        const values = Array.from(form.elements).map(element => element.value)
+        // debugger
+        let formData = {}
+        for (let i=0; i < keys.length; i++) {
+            if (keys[i] != `${cat}-submit`)
+            formData[keys[i]] = values[i]
+        }
         modal.style.display = "none"
         const configObj = {
             method: "POST",
@@ -80,18 +87,21 @@ function modalSetup(cat, catButton, spanIndex) {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify()
+            body: JSON.stringify(formData)
             }
         
-
         return fetch(`http://localhost:3000/${cat}s`, configObj)
         .then(function(response) {
             return response.json();
         })
         .then(function(object) {
-            return object.id
+            const playerName = document.getElementById(object.player_id).innerHTML
+
+            li.innerHTML = `<strong>${object.name}</strong><br>Weeks Remaining: ${object.weeks}<br>Description: ${object.description}<br>Player: ${playerName}`
+            document.getElementById("project-list").appendChild(li);
         })
     })
+
 }
 
 function toggleHidden(category) {

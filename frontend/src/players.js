@@ -3,7 +3,7 @@
 document.getElementById("add-player").addEventListener('click', function() {
     const playerName = prompt("Enter player name:")
     const li = document.createElement("li")
-    const listOption = document.createElement("option")
+    const listOption = document.createElement("OPTION")
     if (playerName === null || playerName === "") {
         alert("You've gotta have some sort of identifier!")
     } else {
@@ -12,8 +12,9 @@ document.getElementById("add-player").addEventListener('click', function() {
             li.innerHTML = player.name
             listOption.innerHTML = player.name
             listOption.value = resp
+            listOption.id = resp
             document.getElementById("player-list").appendChild(li);
-            document.getElementById("player-names").appendChild(listOption)
+            document.getElementById("player_id").appendChild(listOption)
         })
     }
 })
