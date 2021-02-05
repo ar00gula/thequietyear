@@ -1,7 +1,5 @@
 //toggle sizes
 
-// remind Jesse of breadcrumb in song.js 68
-
 let sideBar = document.querySelectorAll(".sidebar")
 
 function changeSize(item, size) {

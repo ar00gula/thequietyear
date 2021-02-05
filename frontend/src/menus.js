@@ -50,7 +50,7 @@ projects.addEventListener("click", function() {
 modalSetup("project", addProjectButton, 0)
 
 // functions
-
+// modalSetup needs refactoring, will be used when I switch all forms to modals
 function modalSetup(cat, catButton, spanIndex) {
     const form = document.getElementById(`${cat}-form`);
     const span = document.getElementsByClassName("close");
@@ -72,13 +72,11 @@ function modalSetup(cat, catButton, spanIndex) {
     document.getElementById(`${cat}-submit`).addEventListener("click", function(e) {
         e.preventDefault()
         let li = document.createElement("li")
-        // let again = document.createElement("li")
         document.getElementById("project-list").appendChild(li)     
         let formElements = Array.from(form.elements)
         const keys = formElements.map(element => element.id)
         const values = formElements.map(element => element.value)
         formElements.forEach(element => element.value = "")
-        // debugger
         let formData = {}
         for (let i=0; i < keys.length; i++) {
             if (keys[i] != `${cat}-submit`)
